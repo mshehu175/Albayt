@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Bayt | Premium Home Solutions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary: #2A5C82;
+            --accent: #FF6B35;
+            --dark: #1a3654;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9fbfd;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-scrolled {
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 120px;
+            clip-path: ellipse(130% 100% at 50% 0%);
+            position: relative;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .service-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+        }
+
+        .logo-badge {
+            width: 90px;
+            height: 90px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -70px auto 25px;
+            box-shadow: 0 15px 30px rgba(42,92,130,0.2);
+        }
+
+        .founder-quote {
+            position: relative;
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .founder-quote::before {
+            content: "❝";
+            position: absolute;
+            font-size: 6rem;
+            color: var(--primary);
+            opacity: 0.08;
+            top: -30px;
+            left: 10px;
+        }
+
+        .contact-form .form-control {
+            border-radius: 15px;
+            padding: 1.2rem;
+            border: 2px solid #e0e7ff;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(42,92,130,0.1);
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(42,92,130,0.2);
+        }
+
+        .highlight-text {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glow-effect {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(42,92,130,0.15) 0%, rgba(255,255,255,0) 70%);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            animation: glowPulse 4s infinite;
+        }
+
+        @keyframes glowPulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
+
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        .partner-logo img {
+            filter: grayscale(1);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            max-height: 70px;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .partner-logo:hover img {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+
+        .core-principle-card {
+            background: rgba(255,255,255,0.95);
+            border: 2px solid rgba(42,92,130,0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .core-principle-card:hover {
+            transform: translateY(-10px);
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .progress-bar {
+            border-radius: 10px;
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/albayt.jpeg" alt="Al Bayt" style="height: 50px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container text-center position-relative">
+            <div class="glow-effect"></div>
+            <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">
+                Building Nigeria's<br>
+                <span class="highlight-text">Future Homes</span>
+            </h1>
+            <p class="lead fs-5 opacity-85 mb-5">Where engineering excellence meets timeless African design</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="#services" class="btn btn-light btn-lg px-5">
+                    <i class="fas fa-hammer me-2"></i>Our Services
+                </a>
+                <a href="#contact" class="btn btn-outline-light btn-lg px-5">
+                    <i class="fas fa-comments me-2"></i>Get Started
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+<section id="services" class="py-5" style="margin-top: 100px">
+    <div class="container">
+    <h2 class="text-center mb-5 position-relative">
+    <span class="display-4 fw-bold gradient-text">Our Services</span>
+    <span class="section-subtitle">Building Excellence</span>
+</h2>
+
+<style>
+    .gradient-text {
+        background: linear-gradient(45deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        display: inline-block;
+        padding: 0 1rem;
+    }
+
+    .gradient-text::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        border-radius: 2px;
+    }
+
+    .section-subtitle {
+        display: block;
+        font-size: 1.2rem;
+        letter-spacing: 3px;
+        color: rgba(0, 0, 0, 0.4);
+        margin-top: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+        .gradient-text {
+            font-size: 3.5rem;
+        }
+        
+        .gradient-text::after {
+            width: 80px;
+            height: 4px;
+            bottom: -20px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+        }
+    }
+</style>            
+    <div class="row g-4">
+            <!-- Solar Installation -->
+            <div class="col-md-4">
+                <div class="service-card animate-on-scroll">
+                    <div class="logo-badge bg-accent">
+                        <i class="fas fa-solar-panel fa-2x text-white"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Solar Installations</h3>
+                    <p class="text-muted text-center">Powering Your Home with Sustainable Energy Solutions</p>
+                    <div class="progress mb-4" style="height: 6px;">
+                        <div class="progress-bar bg-accent" role="progressbar" style="width: 100%"></div>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Custom solar system design
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Professional installation
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Energy storage solutions
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            24/7 maintenance support
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Interior Design -->
+            <div class="col-md-4">
+                <div class="service-card animate-on-scroll" style="transition-delay: 0.2s">
+                    <div class="logo-badge bg-primary">
+                        <i class="fas fa-paint-roller fa-2x text-white"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Interior Design</h3>
+                    <p class="text-muted text-center">Transforming Spaces into Stylish, Functional Works of Art</p>
+                    <div class="progress mb-4" style="height: 6px;">
+                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%"></div>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Space optimization
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Custom design concepts
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            3D visualization
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Material selection guidance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Real Estate -->
+            <div class="col-md-4">
+                <div class="service-card animate-on-scroll" style="transition-delay: 0.4s">
+                    <div class="logo-badge bg-success">
+                        <i class="fas fa-building fa-2x text-white"></i>
+                    </div>
+                    <h3 class="text-center mb-3">Real Estate</h3>
+                    <p class="text-muted text-center">Building Homes, Creating Futures – Your Trusted Partner</p>
+                    <div class="progress mb-4" style="height: 6px;">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"></div>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Property acquisition
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Architectural planning
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Construction management
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="fas fa-check-circle me-2 text-success"></i>
+                            Commercial development
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </div>
+    
+    <div class="row g-5 align-items-center">
+    <!-- What Drives Us Section -->
+    <div class="col-lg-7 order-lg-1">
+        <div class="pe-lg-4">
+            <h3 class="display-6 fw-bold text-primary mb-4">What Drives Us?</h3>
+            <div class="drive-list">
+                <div class="drive-item bg-white p-4 rounded-4 mb-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="drive-icon bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-handshake fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Better Service</h5>
+                            <p class="text-muted small mb-0">24/7 support with rapid response time</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drive-item bg-white p-4 rounded-4 mb-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="drive-icon bg-accent text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-scale-balanced fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Fair Pricing</h5>
+                            <p class="text-muted small mb-0">Transparent & competitive rates</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drive-item bg-white p-4 rounded-4 mb-3 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="drive-icon bg-success text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-shield-halved fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Solid Guarantees</h5>
+                            <p class="text-muted small mb-0">Written quality assurance</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="drive-item bg-white p-4 rounded-4 shadow-sm">
+                    <div class="d-flex align-items-center">
+                        <div class="drive-icon bg-dark text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-hand-holding-heart fa-2x"></i>
+                        </div>
+                        <div>
+                            <h5 class="mb-1">Unshaken Promises</h5>
+                            <p class="text-muted small mb-0">Commitment you can trust</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Founder Section -->
+<div class="col-lg-5 order-lg-2">
+    <div class="founder-card position-relative">
+        <div class="position-relative bg-glass p-5 rounded-4 shadow-premium">
+            <div class="d-flex align-items-center mb-4">
+                <div class="position-relative me-3">
+                    <img src="images/salman.jpg" alt="Founder" 
+                        class="rounded-circle shadow-lg" style="width: 120px; border: 3px solid var(--primary)">
+                    <div class="certification-badge bg-accent text-white">
+                        <i class="fas fa-award"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="mb-0 text-dark fw-bold display-6">Salman Aliyu</h3>
+                    <p class="text-primary mb-1">Founder & CEO</p>
+                    <small class="text-muted">electrical and electronics engineer</small>
+                </div>
+            </div>
+            <blockquote class="mb-4 fs-5 text-dark position-relative quote-card">
+                <div class="quote-marks">
+                    <i class="fas fa-quote-left text-accent fs-2"></i>
+                    <i class="fas fa-quote-right text-accent fs-2"></i>
+                </div>
+                <p class="mb-0">"I didn't just want to start a company. I wanted to build something Nigerians 
+                    could rely on—where every promise made is a promise kept."</p>
+                <footer class="mt-3 fw-bold text-primary">
+                    — Founder, Al Bayt
+                </footer>
+            </blockquote>
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="stat-card bg-dark text-center p-3 rounded-3">
+                        <div class="text-white fs-2 fw-bold mb-1">5+</div>
+                        <small class="text-accent">Years Expertise</small>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat-card bg-primary text-center p-3 rounded-3">
+                        <div class="text-white fs-2 fw-bold mb-1">500+</div>
+                        <small class="text-accent">Projects Delivered</small>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-top border-secondary">
+                <div class="d-flex justify-content-around">
+                    <div class="text-center">
+                        <i class="fas fa-check-circle text-success fs-4"></i>
+                        <div class="small text-muted mt-1">ISO Certified</div>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-building text-primary fs-4"></i>
+                        <div class="small text-muted mt-1">15+ Awards</div>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-users text-accent fs-4"></i>
+                        <div class="small text-muted mt-1">98% Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<style>
+    .quote-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-left: 4px solid var(--accent);
+        padding: 1.5rem;
+        margin: 2rem 0;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .quote-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .quote-marks {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        top: -15px;
+        opacity: 0.2;
+    }
+
+    .quote-card footer {
+        font-family: 'Poppins', sans-serif;
+        letter-spacing: 0.5px;
+    }
+
+    .certification-badge {
+        transform: rotate(15deg);
+        transition: all 0.3s ease;
+    }
+
+    .founder-card:hover .certification-badge {
+        transform: rotate(0deg) scale(1.1);
+    }
+</style>
+<style>
+    :root {
+        --gradient-primary: linear-gradient(45deg, #2A5C82, #1a3654);
+        --gradient-accent: linear-gradient(45deg, #FF6B35, #FF8C42);
+        --gradient-success: linear-gradient(45deg, #28a745, #1e7e34);
+        --gradient-dark: linear-gradient(45deg, #343a40, #212529);
+    }
+
+    /* Value Icons Styling */
+    .drive-icon {
+        width: 65px;
+        height: 65px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: var(--gradient-primary);
+    }
+
+    .bg-gradient-accent { background: var(--gradient-accent) }
+    .bg-gradient-success { background: var(--gradient-success) }
+    .bg-gradient-dark { background: var(--gradient-dark) }
+
+    .drive-item:hover .drive-icon {
+        transform: rotate(15deg) scale(1.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Founder Card Enhancements */
+    .founder-card {
+        perspective: 1000px;
+    }
+
+    .bg-glass {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .shadow-premium {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15), 
+                    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                    0 0 0 1px rgba(0, 0, 0, 0.05);
+    }
+
+    .certification-badge {
+        position: absolute;
+        bottom: -10px;
+        right: -10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .stat-card {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Quote Styling */
+    blockquote i.fa-quote-left {
+        position: absolute;
+        top: -0.5rem;
+        left: -0.5rem;
+    }
+
+    blockquote i.fa-quote-right {
+        margin-right: -0.5rem;
+    }
+</style>
+    <!-- Partners Section -->
+    <!--section class="bg-white py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h3 class="text-primary mb-3">Trusted By Industry Leaders</h3>
+                <p class="text-muted">Collaborating with Nigeria's most respected organizations</p>
+            </div>
+            <div class="partner-grid">
+                <div class="partner-logo">
+                    <img src="assets/partners/gov-logo.png" alt="Federal Ministry of Housing">
+                </div>
+                <div class="partner-logo">
+                    <img src="assets/partners/ecobank.png" alt="Ecobank Nigeria">
+                </div>
+                <div class="partner-logo">
+                    <img src="assets/partners/dangote.png" alt="Dangote Group">
+                </div>
+                <div class="partner-logo">
+                    <img src="assets/partners/lafarge.png" alt="Lafarge Africa">
+                </div>
+                <div class="partner-logo">
+                    <img src="assets/partners/solar-edge.png" alt="SolarEdge">
+                </div>
+            </div>
+        </div>
+    </section-->
+
+    <!-- Contact Trigger Button -->
+<section id="contact" class="py-5 bg-light text-center">
+    <div class="container">
+        <button class="btn btn-primary btn-lg px-5 py-3" data-bs-toggle="modal" data-bs-target="#contactModal">
+            <i class="fas fa-envelope me-2"></i>Send Us Message
+        </button>
+    </div>
+</section>
+
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content border-0 overflow-hidden">
+            <div class="modal-body p-0">
+                <div class="row g-0">
+                    <!-- Decorative Sidebar -->
+                    <div class="col-md-5 gradient-bg text-white position-relative">
+                        <div class="p-5 h-100 d-flex flex-column">
+                            <h2 class="display-5 fw-bold mb-4">Let's Build Your Dream</h2>
+                            <div class="mb-5">
+                                <p class="lead">Start your journey with Nigeria's premier home solutions provider</p>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-check-circle fa-2x me-3"></i>
+                                    <span>24-hour response time</span>
+                                </div>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-check-circle fa-2x me-3"></i>
+                                    <span>Free initial consultation</span>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-check-circle fa-2x me-3"></i>
+                                    <span>No obligation quote</span>
+                                </div>
+                            </div>
+                            <div class="mt-auto">
+                                <img src="images/albayt2.png" 
+                                     alt="AL BAYT LTD" class="img-fluid opacity-25" style="max-height: 150px">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Section -->
+                    <div class="col-md-7">
+                        <div class="p-5 glass-bg">
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h3 class="text-primary mb-4 display-6 fw-bold">Start Your Journey</h3>
+                            
+                            <form id="contactForm" class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="name" placeholder="Name" required>
+                                        <label for="name"><i class="fas fa-user me-2"></i>Your Name</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                                        <label for="email"><i class="fas fa-envelope me-2"></i>Email Address</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <input type="tel" class="form-control" id="phone" placeholder="Phone" required>
+                                        <label for="phone"><i class="fas fa-phone me-2"></i>Phone Number</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="service" required>
+                                            <option value="">Select Service</option>
+                                            <option>Solar Installation</option>
+                                            <option>Interior Design</option>
+                                            <option>Real Estate</option>
+                                            <option>Smart Home</option>
+                                        </select>
+                                        <label for="service"><i class="fas fa-concierge-bell me-2"></i>Service Needed</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" style="height: 100px" required></textarea>
+                                        <label for="message"><i class="fas fa-comment-dots me-2"></i>Your Message</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary w-100 py-3">
+                                        Send Message <i class="fas fa-paper-plane ms-2"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<style>
+    .gradient-bg {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+    }
+
+    .glass-bg {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-floating label {
+        padding-left: 2.5rem;
+    }
+
+    .form-floating i {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary);
+        width: 20px;
+        text-align: center;
+    }
+
+    .form-control, .form-select {
+        border-radius: 0.7rem;
+        padding-left: 2.5rem;
+        border: 2px solid #e0e7ff;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(42,92,130,0.1);
+    }
+
+    .modal-content {
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
+
+    .modal-header {
+        border-bottom: none;
+    }
+
+    .modal-body {
+        min-height: 500px;
+    }
+</style>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-4">
+                    <img src="images/albayt2.png" alt="Al Bayt" style="height: 150px">
+                    <p class="mt-3 text-muted">Building better futures since 2025</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services" class="text-white text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="#about" class="text-white text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="#contact" class="text-white text-decoration-none">Contact: +2349166578557, +2349169353859</a></li>
+                        <li><a href="#careers" class="text-white text-decoration-none">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white"><i class="fab fa-facebook fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5 pt-3 border-top border-secondary">
+                <small class="text-muted">&copy; 2025 Al Bayt. All rights reserved.</small>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+    <script>
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => {
+            observer.observe(element);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.navbar');
+            if(window.scrollY > 50) {
+                nav.classList.add('navbar-scrolled');
+            } else {
+                nav.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const button = form.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Sending...';
+            button.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                alert('Message sent successfully!');
+                form.reset();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
