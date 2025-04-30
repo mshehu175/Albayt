@@ -413,6 +413,34 @@
                 min-height: 500px;
             }
 
+            /* Back to Top Button */
+#backToTopBtn {
+    position: fixed;
+    bottom: 30px; /* Adjust for more space from the bottom */
+    right: 30px; /* Adjust for more space from the right */
+    display: none;
+    background-color: #9e9a96; /* Blue background */
+    color: white;
+    border: none;
+    padding: 15px 20px; /* Larger size for a bigger button */
+    font-size: 20px; /* Larger icon size */
+    border-radius: 30%; /* Circular button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adding some shadow for a floating effect */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+    z-index: 1000; /* Make sure it's on top of other elements */
+}
+
+#backToTopBtn:hover {
+    background-color: #0056b3; /* Darker blue when hovered */
+    transform: translateY(-5px); /* Hover effect to make it look like it's floating */
+}
+
+#backToTopBtn:focus {
+    outline: none; /* Removes the focus outline when clicked */
+}
+
+
         </style>
 </head>
 <body>
@@ -935,10 +963,39 @@
             </div>
         </div>
         <div class="text-center border-top border-secondary mt-4 pt-3">
-            <small class="text-white">&copy; <span id="currentYear"></span> Al Bayt. All rights reserved.</small>
+            <small class="text-muted">&copy; <span id="currentYear"></span> Al Bayt. All rights reserved.</small>
         </div>
     </div>
 </footer>
+
+<!-- Back to Top Button -->
+<button id="backToTopBtn" class="btn btn-light rounded-circle" title="Back to Top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+
+<!-- JavaScript to auto-update year and Back to Top functionality -->
+<script>
+    // Set the current year dynamically
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    // Get the button
+    let mybutton = document.getElementById("backToTopBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    };
+
+    // When the user clicks on the button, scroll to the top of the document
+    mybutton.onclick = function() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+</script>
 
 <!-- JavaScript to auto-update year -->
 <script>
